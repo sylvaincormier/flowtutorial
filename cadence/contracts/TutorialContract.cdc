@@ -57,7 +57,6 @@ pub contract TutorialContract {
   pub fun createEmptyCollection(): @Collection {
         return <- create Collection()
     }
-}
 
   pub resource NFTMinter {
     pub var idCount: UInt64
@@ -71,12 +70,7 @@ pub contract TutorialContract {
         self.idCount = self.idCount + 1 as UInt64
         return <-newNFT
     }
-    
-    pub fun splitNFT(): @NFT {
-        var newNFT <- create NFT(initID: self.idCount)
-        self.idCount = self.idCount + 1 as UInt64
-        return <-newNFT
-    }
+  }
 
   init() {
         self.account.save(<-self.createEmptyCollection(), to: /storage/NFTCollection)
@@ -84,3 +78,4 @@ pub contract TutorialContract {
         self.account.save(<-create NFTMinter(), to: /storage/NFTMinter)
 	}
 }
+ 

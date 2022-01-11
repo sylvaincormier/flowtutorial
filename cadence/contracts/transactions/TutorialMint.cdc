@@ -6,20 +6,16 @@ transaction {
   let minterRef: &TutorialContract.NFTMinter
 
   prepare(acct: AuthAccount) {
-      self.receiverRef = acct.getCapability<&{PinataPartyContract.NFTReceiver}>(/public/NFTReceiver)
-          .borrow()
-          ?? panic("Could not borrow receiver reference")        
+      self.receiverRef = acct.getCapability<&{TutorialContract.NFTReceiver}>(/public/NFTReceiver).borrow()
+      ?? panic("Could not borrow receiver reference")        
       
-      self.minterRef = acct.borrow<&PinataPartyContract.NFTMinter>(from: /storage/NFTMinter)
-          ?? panic("could not borrow minter reference")
+      self.minterRef = acct.borrow<&TutorialContract.NFTMinter>(from: /storage/NFTMinter)
+      ?? panic("could not borrow minter reference")
   }
 
   execute {
       let metadata : {String : String} = {
-          "name": "The Big Swing",
-          "swing_velocity": "29", 
-          "swing_angle": "45", 
-          "rating": "5",
+          "name": "All I have is my dream (Too funky it hurts).mp4",
           "uri": "ipfs://QmS4RoRMNwTbK2vpLUXqL9dbzSd5qaUoytuM3LGqKGGutB"
       }
       let newNFT <- self.minterRef.mintNFT()

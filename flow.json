@@ -1,22 +1,27 @@
-
 {
 	"emulators": {
 		"default": {
-		"port":  3569,
-		"serviceAccount":  "emulator-account"
+			"port": 3569,
+			"serviceAccount": "emulator-account"
 		}
-		},
-		"contracts": {
-		"TutorialContract":  "./cadence/contracts/Tutorial.cdc"
-		},
-		"networks": {
-			"emulator":  "127.0.0.1:3569",
-			"mainnet":  "access.mainnet.nodes.onflow.org:9000",
-			"testnet":  "access.devnet.nodes.onflow.org:9000"
-		},
-		"deployments": {
-			"emulator": {
-				"emulator-account": ["TutorialAccount"]
-			}
+	},
+	"contracts": {
+		"TutorialContract":  "./cadence/contracts/TutorialContract.cdc"
+	},
+	"networks": {
+		"emulator": "127.0.0.1:3569",
+		"mainnet": "access.mainnet.nodes.onflow.org:9000",
+		"testnet": "access.devnet.nodes.onflow.org:9000"
+	},
+	"accounts": {
+		"emulator-account": {
+			"address": "f8d6e0586b0a20c7",
+			"key": "f6e3d4fe258382c25067611fd16eff08a09722f66291fc008fb631c8335df0d6"
+		}
+	},
+	"deployments": {
+		"emulator": {
+			"emulator-account": ["TutorialContract"]
 		}
 	}
+}
